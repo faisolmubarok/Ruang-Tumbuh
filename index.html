@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ruang Tumbuh - Pengembangan Diri Peserta Didik</title>
+
+<style>
+:root{
+  --primary:#7566d9;
+  --secondary:#a995ef;
+  --soft:#f5f2ff;
+  --pink:#f4a7c1;
+  --blue:#83b8ee;
+  --green:#78c9a3;
+  --text:#30304a;
+  --muted:#77758b;
+  --white:#fff;
+  --bg:#f8f8fc;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:255px;
+  background:#fff;
+  border-right:1px solid #eee;
+  padding:25px 16px;
+  position:fixed;
+  height:100vh;
+  z-index:5;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 10px 28px;
+}
+
+.logo-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--primary),var(--pink));
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:21px;
+}
+
+.logo h2{
+  font-size:19px;
+}
+
+.logo small{
+  color:var(--muted);
+}
+
+nav button{
+  width:100%;
+  border:0;
+  background:transparent;
+  padding:12px 14px;
+  margin:3px 0;
+  border-radius:12px;
+  text-align:left;
+  color:#656477;
+  font-size:14px;
+  cursor:pointer;
+}
+
+nav button:hover,
+nav button.active{
+  background:var(--soft);
+  color:var(--primary);
+  font-weight:700;
+}
+
+nav button span{
+  display:inline-block;
+  width:25px;
+}
+
+/* MAIN */
+.main{
+  margin-left:255px;
+  width:calc(100% - 255px);
+  padding:28px 34px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.topbar h1{
+  font-size:27px;
+}
+
+.topbar p{
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#fff;
+  padding:8px 13px;
+  border-radius:14px;
+}
+
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#dcd6ff;
+  display:grid;
+  place-items:center;
+  color:var(--primary);
+  font-weight:bold;
+}
+
+/* PAGE */
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(120deg,#7566d9,#9b8be7);
+  color:white;
+  border-radius:22px;
+  padding:28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  overflow:hidden;
+}
+
+.hero h2{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  max-width:650px;
+  opacity:.9;
+  line-height:1.6;
+}
+
+.hero-art{
+  font-size:75px;
+  opacity:.85;
+}
+
+/* BUTTON */
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:10px 15px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:white;
+}
+
+.btn-light{
+  background:white;
+  color:var(--primary);
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin:20px 0;
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:19px;
+  box-shadow:0 4px 18px rgba(60,50,100,.05);
+}
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stat-icon{
+  font-size:26px;
+}
+
+.number{
+  font-size:25px;
+  font-weight:800;
+  margin-top:7px;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* GRID */
+.grid2{
+  display:grid;
+  grid-template-columns:1.35fr 1fr;
+  gap:18px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.section-title h3{
+  font-size:17px;
+}
+
+/* PROGRESS */
+.progress{
+  height:9px;
+  background:#eee;
+  border-radius:10px;
+  overflow:hidden;
+  margin:8px 0 14px;
+}
+
+.progress i{
+  display:block;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    var(--primary),
+    var(--pink)
+  );
+  border-radius:10px;
+}
+
+/* LIST */
+.list{
+  display:grid;
+  gap:11px;
+}
+
+.item{
+  padding:13px;
+  border:1px solid #eee;
+  border-radius:13px;
+  background:#fff;
+}
+
+.item strong{
+  font-size:14px;
+}
+
+.item small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* TAG */
+.tag{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:var(--soft);
+  color:var(--primary);
+  font-size:11px;
+  font-weight:700;
+}
+
+/* SECTION */
+.section{
+  background:#fff;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:18px;
+}
+
+/* TABLE */
+.table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.table th,
+.table td{
+  text-align:left;
+  padding:13px;
+  border-bottom:1px solid #eee;
+  font-size:13px;
+}
+
+.table th{
+  color:var(--muted);
+  background:#fafaff;
+}
+
+/* FORM */
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-size:13px;
+  font-weight:700;
+}
+
+.field input,
+.field textarea,
+.field select{
+  padding:11px 12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font:inherit;
+  outline:none;
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+/* THREE CARDS */
+.cards3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.skill{
+  padding:16px;
+  border-radius:15px;
+  background:var(--soft);
+}
+
+.skill h4{
+  margin-bottom:5px;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  padding:25px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .sidebar{
+    width:210px;
+  }
+
+  .main{
+    margin-left:210px;
+    width:calc(100% - 210px);
+    padding:20px;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid2{
+    grid-template-columns:1fr;
+  }
+
+  .cards3{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:650px){
+
+  body{
+    display:block;
+  }
+
+  .sidebar{
+    position:static;
+    width:100%;
+    height:auto;
+    border-right:0;
+    border-bottom:1px solid #eee;
+  }
+
+  .sidebar nav{
+    display:flex;
+    overflow:auto;
+  }
+
+  .sidebar nav button{
+    min-width:max-content;
+  }
+
+  .main{
+    margin:0;
+    width:100%;
+    padding:16px;
+  }
+
+  .topbar{
+    align-items:flex-start;
+  }
+
+  .topbar h1{
+    font-size:22px;
+  }
+
+  .profile{
+    display:none;
+  }
+
+  .cards,
+  .cards3{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .hero-art{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="logo">
+
+    <div class="logo-icon">
+      🌱
+    </div>
+
+    <div>
+      <h2>Ruang Tumbuh</h2>
+      <small>Pengembangan Diri</small>
+    </div>
+
+  </div>
+
+  <nav>
+
+    <button
+      class="active"
+      onclick="showPage('dashboard',this)">
+      <span>🏠</span>
+      Beranda
+    </button>
+
+    <button
+      onclick="showPage('profil',this)">
+      <span>👤</span>
+      Profil Saya
+    </button>
+
+    <button
+      onclick="showPage('potensi',this)">
+      <span>⭐</span>
+      Bakat & Minat
+    </button>
+
+    <button
+      onclick="showPage('target',this)">
+      <span>🎯</span>
+      Target Saya
+    </button>
+
+    <button
+      onclick="showPage('kegiatan',this)">
+      <span>🏆</span>
+      Kegiatan
+    </button>
+
+    <button
+      onclick="showPage('perkembangan',this)">
+      <span>📈</span>
+      Perkembangan
+    </button>
+
+    <button
+      onclick="showPage('jurnal',this)">
+      <span>📝</span>
+      Jurnal & Refleksi
+    </button>
+
+    <button
+      onclick="showPage('portofolio',this)">
+      <span>📁</span>
+      Portofolio
+    </button>
+
+    <button
+      onclick="showPage('konsultasi',this)">
+      <span>🧑‍🏫</span>
+      Konsultasi
+    </button>
+
+  </nav>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="main">
+
+<header class="topbar">
+
+  <div>
+
+    <h1 id="pageTitle">
+      Beranda
+    </h1>
+
+    <p>
+      Kelola dan kembangkan potensi dirimu.
+    </p>
+
+  </div>
+
+  <div class="profile">
+
+    <div class="avatar">
+      ED
+    </div>
+
+    <div>
+      <b>Elsa Dwi</b>
+      <br>
+      <small class="muted">
+        Peserta Didik
+      </small>
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ================= BERANDA ================= -->
+
+<section
+  id="dashboard"
+  class="page active">
+
+  <div class="hero">
+
+    <div>
+
+      <h2>
+        Halo, Elsa! 🌱
+      </h2>
+
+      <p>
+        Selamat datang di Ruang Tumbuh.
+        Kenali potensimu, tetapkan target,
+        ikuti kegiatan, dan lihat perkembangan
+        dirimu.
+      </p>
+
+      <br>
+
+      <button
+        class="btn btn-light"
+        onclick="
+        showPage(
+          'target',
+          document.querySelectorAll('nav button')[3]
+        )">
+
+        Mulai Berkembang →
+
+      </button>
+
+    </div>
+
+    <div class="hero-art">
+      🌿
+    </div>
+
+  </div>
+
+
+  <div class="cards">
+
+    <div class="card stat">
+
+      <div>
+        <span class="muted">
+          Target Aktif
+        </span>
+
+        <div class="number">
+          4
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        🎯
+      </div>
+
+    </div>
+
+
+    <div class="card stat">
+
+      <div>
+        <span class="muted">
+          Kegiatan Diikuti
+        </span>
+
+        <div class="number">
+          3
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        🏆
+      </div>
+
+    </div>
+
+
+    <div class="card stat">
+
+      <div>
+        <span class="muted">
+          Portofolio
+        </span>
+
+        <div class="number">
+          6
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        📁
+      </div>
+
+    </div>
+
+
+    <div class="card stat">
+
+      <div>
+        <span class="muted">
+          Perkembangan
+        </span>
+
+        <div class="number">
+          78%
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        📈
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="grid2">
+
+    <div class="card">
+
+      <div class="section-title">
+
+        <h3>
+          📈 Perkembangan Diri
+        </h3>
+
+        <span class="tag">
+          Bulan ini
+        </span>
+
+      </div>
+
+
+      <p class="muted">
+        Percaya Diri
+      </p>
+
+      <div class="progress">
+        <i style="width:75%"></i>
+      </div>
+
+
+      <p class="muted">
+        Komunikasi
+      </p>
+
+      <div class="progress">
+        <i style="width:82%"></i>
+      </div>
+
+
+      <p class="muted">
+        Kerja Sama
+      </p>
+
+      <div class="progress">
+        <i style="width:88%"></i>
+      </div>
+
+
+      <p class="muted">
+        Kepemimpinan
+      </p>
+
+      <div class="progress">
+        <i style="width:65%"></i>
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="section-title">
+
+        <h3>
+          ✨ Rekomendasi
+        </h3>
+
+      </div>
+
+
+      <div class="list">
+
+        <div class="item">
+
+          <strong>
+            Latihan presentasi
+          </strong>
+
+          <small>
+            Tingkatkan kemampuan komunikasi.
+          </small>
+
+        </div>
+
+
+        <div class="item">
+
+          <strong>
+            Ikuti kegiatan organisasi
+          </strong>
+
+          <small>
+            Latih kepemimpinan dan kerja sama.
+          </small>
+
+        </div>
+
+
+        <div class="item">
+
+          <strong>
+            Buat jurnal mingguan
+          </strong>
+
+          <small>
+            Refleksikan perkembanganmu.
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PROFIL ================= -->
+
+<section
+  id="profil"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        👤 Profil Peserta Didik
+      </h3>
+
+      <button
+        class="btn btn-primary"
+        onclick="
+        alert('Data profil berhasil disimpan!')
+        ">
+
+        Simpan
+
+      </button>
+
+    </div>
+
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>
+          Nama Lengkap
+        </label>
+
+        <input
+          value="Elsa Dwi">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Kelas
+        </label>
+
+        <input
+          value="PGSD">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Hobi
+        </label>
+
+        <input
+          value="Desain, musik, dan kegiatan sosial">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Bakat yang Dirasakan
+        </label>
+
+        <input
+          value="Komunikasi dan kreativitas">
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Potensi/Kelebihan Diri
+        </label>
+
+        <textarea>
+Suka mencoba hal baru, bekerja sama, dan membuat karya kreatif.
+        </textarea>
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Hal yang Ingin Dikembangkan
+        </label>
+
+        <textarea>
+Kepercayaan diri, kepemimpinan, dan kemampuan berbicara di depan umum.
+        </textarea>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= BAKAT MINAT ================= -->
+
+<section
+  id="potensi"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        ⭐ Bakat & Minat
+      </h3>
+
+      <button
+        class="btn btn-primary"
+        onclick="
+        alert('Tes bakat dan minat dimulai!')
+        ">
+
+        Mulai Tes
+
+      </button>
+
+    </div>
+
+
+    <div class="cards3">
+
+      <div class="skill">
+
+        <h4>
+          🎨 Kreativitas
+        </h4>
+
+        <p class="muted">
+          Potensi dalam menghasilkan ide
+          dan karya baru.
+        </p>
+
+        <br>
+
+        <span class="tag">
+          Tinggi
+        </span>
+
+      </div>
+
+
+      <div class="skill">
+
+        <h4>
+          🎤 Komunikasi
+        </h4>
+
+        <p class="muted">
+          Potensi menyampaikan gagasan
+          secara lisan.
+        </p>
+
+        <br>
+
+        <span class="tag">
+          Tinggi
+        </span>
+
+      </div>
+
+
+      <div class="skill">
+
+        <h4>
+          👥 Organisasi
+        </h4>
+
+        <p class="muted">
+          Minat dalam kerja kelompok
+          dan kepemimpinan.
+        </p>
+
+        <br>
+
+        <span class="tag">
+          Sedang
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <h3>
+      Rekomendasi Kegiatan
+    </h3>
+
+    <br>
+
+    <div class="list">
+
+      <div class="item">
+
+        <strong>
+          🎵 Paduan Suara
+        </strong>
+
+        <small>
+          Sesuai dengan minat seni dan komunikasi.
+        </small>
+
+      </div>
+
+
+      <div class="item">
+
+        <strong>
+          🗣️ Public Speaking Club
+        </strong>
+
+        <small>
+          Melatih keberanian dan kemampuan presentasi.
+        </small>
+
+      </div>
+
+
+      <div class="item">
+
+        <strong>
+          🤝 Organisasi Mahasiswa
+        </strong>
+
+        <small>
+          Mengembangkan kerja sama dan kepemimpinan.
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TARGET ================= -->
+
+<section
+  id="target"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        🎯 Target Pengembangan Diri
+      </h3>
+
+      <button
+        class="btn btn-primary"
+        onclick="addTarget()">
+
+        + Tambah Target
+
+      </button>
+
+    </div>
+
+
+    <table class="table">
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Target
+          </th>
+
+          <th>
+            Batas Waktu
+          </th>
+
+          <th>
+            Progress
+          </th>
+
+          <th>
+            Status
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody id="targetBody">
+
+        <tr>
+
+          <td>
+            Meningkatkan percaya diri
+          </td>
+
+          <td>
+            30 Okt 2026
+          </td>
+
+          <td>
+            75%
+          </td>
+
+          <td>
+            <span class="tag">
+              Berjalan
+            </span>
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Berani presentasi tanpa membaca teks
+          </td>
+
+          <td>
+            15 Nov 2026
+          </td>
+
+          <td>
+            60%
+          </td>
+
+          <td>
+            <span class="tag">
+              Berjalan
+            </span>
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Mengikuti satu kegiatan organisasi
+          </td>
+
+          <td>
+            30 Nov 2026
+          </td>
+
+          <td>
+            100%
+          </td>
+
+          <td>
+            <span class="tag">
+              Selesai
+            </span>
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- ================= KEGIATAN ================= -->
+
+<section
+  id="kegiatan"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        🏆 Kegiatan & Ekstrakurikuler
+      </h3>
+
+      <span class="tag">
+        3 kegiatan
+      </span>
+
+    </div>
+
+
+    <div class="cards3">
+
+      <div class="card">
+
+        <h3>
+          🎵 Paduan Suara
+        </h3>
+
+        <p class="muted">
+          Mengembangkan seni, kerja sama,
+          dan kepercayaan diri.
+        </p>
+
+        <br>
+
+        <b>
+          Jumat • 15.00
+        </b>
+
+        <br><br>
+
+        <button
+          class="btn btn-primary"
+          onclick="
+          alert('Kamu terdaftar di Paduan Suara!')
+          ">
+
+          Daftar
+
+        </button>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          🎤 Public Speaking
+        </h3>
+
+        <p class="muted">
+          Latihan berbicara, presentasi,
+          dan komunikasi.
+        </p>
+
+        <br>
+
+        <b>
+          Selasa • 14.00
+        </b>
+
+        <br><br>
+
+        <button
+          class="btn btn-primary"
+          onclick="
+          alert('Kamu terdaftar di Public Speaking!')
+          ">
+
+          Daftar
+
+        </button>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          🤝 Kepemimpinan
+        </h3>
+
+        <p class="muted">
+          Pelatihan kepemimpinan
+          dan kerja tim.
+        </p>
+
+        <br>
+
+        <b>
+          Sabtu • 09.00
+        </b>
+
+        <br><br>
+
+        <button
+          class="btn btn-primary"
+          onclick="
+          alert(
+            'Kamu terdaftar di kegiatan Kepemimpinan!'
+          )
+          ">
+
+          Daftar
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PERKEMBANGAN ================= -->
+
+<section
+  id="perkembangan"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        📈 Perkembangan Peserta Didik
+      </h3>
+
+      <span class="tag">
+        Evaluasi terbaru
+      </span>
+
+    </div>
+
+
+    <div class="cards3">
+
+      <div class="card">
+
+        <h4>
+          💪 Percaya Diri
+        </h4>
+
+        <div class="number">
+          75%
+        </div>
+
+        <div class="progress">
+          <i style="width:75%"></i>
+        </div>
+
+        <small class="muted">
+          Berkembang
+        </small>
+
+      </div>
+
+
+      <div class="card">
+
+        <h4>
+          💬 Komunikasi
+        </h4>
+
+        <div class="number">
+          82%
+        </div>
+
+        <div class="progress">
+          <i style="width:82%"></i>
+        </div>
+
+        <small class="muted">
+          Baik
+        </small>
+
+      </div>
+
+
+      <div class="card">
+
+        <h4>
+          🤝 Kerja Sama
+        </h4>
+
+        <div class="number">
+          88%
+        </div>
+
+        <div class="progress">
+          <i style="width:88%"></i>
+        </div>
+
+        <small class="muted">
+          Sangat baik
+        </small>
+
+      </div>
+
+
+      <div class="card">
+
+        <h4>
+          👑 Kepemimpinan
+        </h4>
+
+        <div class="number">
+          65%
+        </div>
+
+        <div class="progress">
+          <i style="width:65%"></i>
+        </div>
+
+        <small class="muted">
+          Perlu dikembangkan
+        </small>
+
+      </div>
+
+
+      <div class="card">
+
+        <h4>
+          💡 Kreativitas
+        </h4>
+
+        <div class="number">
+          90%
+        </div>
+
+        <div class="progress">
+          <i style="width:90%"></i>
+        </div>
+
+        <small class="muted">
+          Sangat baik
+        </small>
+
+      </div>
+
+
+      <div class="card">
+
+        <h4>
+          ⏰ Disiplin
+        </h4>
+
+        <div class="number">
+          80%
+        </div>
+
+        <div class="progress">
+          <i style="width:80%"></i>
+        </div>
+
+        <small class="muted">
+          Baik
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= JURNAL ================= -->
+
+<section
+  id="jurnal"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        📝 Jurnal & Refleksi
+      </h3>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveJournal()">
+
+        Simpan Jurnal
+
+      </button>
+
+    </div>
+
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>
+          Tanggal
+        </label>
+
+        <input
+          type="date"
+          value="2026-09-30">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Kegiatan
+        </label>
+
+        <input
+          id="jKegiatan"
+          placeholder="Contoh: Presentasi kelompok">
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Hal yang saya pelajari
+        </label>
+
+        <textarea
+          id="jIsi"
+          placeholder="Tuliskan pengalaman dan pembelajaranmu...">
+        </textarea>
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Hal yang perlu diperbaiki
+        </label>
+
+        <textarea
+          placeholder="Apa yang ingin kamu tingkatkan?">
+        </textarea>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <h3>
+      Jurnal Terbaru
+    </h3>
+
+    <br>
+
+    <div id="journalList">
+
+      <div class="item">
+
+        <strong>
+          Presentasi kelompok
+        </strong>
+
+        <small>
+          30 September 2026 •
+          Saya menjadi lebih percaya diri
+          berbicara di depan kelas.
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PORTOFOLIO ================= -->
+
+<section
+  id="portofolio"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        📁 Prestasi & Portofolio
+      </h3>
+
+      <button
+        class="btn btn-primary"
+        onclick="addPortfolio()">
+
+        + Tambah Karya
+
+      </button>
+
+    </div>
+
+
+    <div
+      class="cards3"
+      id="portfolioGrid">
+
+      <div class="card">
+
+        <h3>
+          🏅 Sertifikat Kegiatan
+        </h3>
+
+        <p class="muted">
+          Sertifikat kegiatan pengembangan diri.
+        </p>
+
+        <br>
+
+        <span class="tag">
+          2026
+        </span>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          🎨 Desain Poster
+        </h3>
+
+        <p class="muted">
+          Karya desain untuk kegiatan
+          sekolah/kampus.
+        </p>
+
+        <br>
+
+        <span class="tag">
+          Karya
+        </span>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          🎤 Pengalaman Presentasi
+        </h3>
+
+        <p class="muted">
+          Dokumentasi pengalaman presentasi.
+        </p>
+
+        <br>
+
+        <span class="tag">
+          Pengalaman
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= KONSULTASI ================= -->
+
+<section
+  id="konsultasi"
+  class="page">
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>
+        🧑‍🏫 Bimbingan & Konsultasi
+      </h3>
+
+    </div>
+
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>
+          Topik Konsultasi
+        </label>
+
+        <select>
+
+          <option>
+            Bakat & Minat
+          </option>
+
+          <option>
+            Pengembangan Akademik
+          </option>
+
+          <option>
+            Pengembangan Karakter
+          </option>
+
+          <option>
+            Kegiatan/Organisasi
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Guru/Pembimbing
+        </label>
+
+        <select>
+
+          <option>
+            Guru BK / Pembimbing
+          </option>
+
+          <option>
+            Wali Kelas
+          </option>
+
+          <option>
+            Pembina Kegiatan
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Pesan
+        </label>
+
+        <textarea
+          placeholder="Tuliskan hal yang ingin dikonsultasikan...">
+        </textarea>
+
+      </div>
+
+    </div>
+
+
+    <br>
+
+    <button
+      class="btn btn-primary"
+      onclick="
+      alert(
+        'Permintaan konsultasi berhasil dikirim!'
+      )
+      ">
+
+      Kirim Permintaan
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+  © 2026 Ruang Tumbuh •
+  Manajemen Pengembangan Diri Peserta Didik
+
+</div>
+
+</main>
+
+
+<script>
+
+/* =========================
+   PERPINDAHAN HALAMAN
+========================= */
+
+const titles = {
+
+  dashboard:'Beranda',
+
+  profil:'Profil Saya',
+
+  potensi:'Bakat & Minat',
+
+  target:'Target Saya',
+
+  kegiatan:'Kegiatan & Ekstrakurikuler',
+
+  perkembangan:'Perkembangan',
+
+  jurnal:'Jurnal & Refleksi',
+
+  portofolio:'Prestasi & Portofolio',
+
+  konsultasi:'Bimbingan & Konsultasi'
+
+};
+
+
+function showPage(id,btn){
+
+  document
+  .querySelectorAll('.page')
+  .forEach(
+    p => p.classList.remove('active')
+  );
+
+
+  document
+  .getElementById(id)
+  .classList.add('active');
+
+
+  document
+  .querySelectorAll('nav button')
+  .forEach(
+    b => b.classList.remove('active')
+  );
+
+
+  if(btn){
+
+    btn.classList.add('active');
+
+  }
+
+
+  document
+  .getElementById('pageTitle')
+  .textContent = titles[id];
+
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:'smooth'
+
+  });
+
+}
+
+
+/* =========================
+   TAMBAH TARGET
+========================= */
+
+function addTarget(){
+
+  const t = prompt(
+    'Masukkan target pengembangan diri:'
+  );
+
+
+  if(!t) return;
+
+
+  const tr =
+  document.createElement('tr');
+
+
+  tr.innerHTML = `
+
+    <td>
+      ${t}
+    </td>
+
+    <td>
+      -
+    </td>
+
+    <td>
+      0%
+    </td>
+
+    <td>
+
+      <span class="tag">
+        Belum dimulai
+      </span>
+
+    </td>
+
+  `;
+
+
+  document
+  .getElementById('targetBody')
+  .appendChild(tr);
+
+}
+
+
+/* =========================
+   SIMPAN JURNAL
+========================= */
+
+function saveJournal(){
+
+  const k =
+  document
+  .getElementById('jKegiatan')
+  .value
+  ||
+  'Jurnal Pengembangan Diri';
+
+
+  const i =
+  document
+  .getElementById('jIsi')
+  .value
+  ||
+  'Catatan refleksi peserta didik.';
+
+
+  const el =
+  document.createElement('div');
+
+
+  el.className='item';
+
+
+  el.innerHTML = `
+
+    <strong>
+      ${k}
+    </strong>
+
+    <small>
+      30 September 2026 • ${i}
+    </small>
+
+  `;
+
+
+  document
+  .getElementById('journalList')
+  .prepend(el);
+
+
+  alert(
+    'Jurnal berhasil disimpan!'
+  );
+
+}
+
+
+/* =========================
+   TAMBAH PORTOFOLIO
+========================= */
+
+function addPortfolio(){
+
+  const p =
+  prompt(
+    'Nama karya/prestasi:'
+  );
+
+
+  if(!p) return;
+
+
+  const el =
+  document.createElement('div');
+
+
+  el.className='card';
+
+
+  el.innerHTML = `
+
+    <h3>
+      📌 ${p}
+    </h3>
+
+    <p class="muted">
+      Portofolio peserta didik.
+    </p>
+
+    <br>
+
+    <span class="tag">
+      Baru
+    </span>
+
+  `;
+
+
+  document
+  .getElementById('portfolioGrid')
+  .appendChild(el);
+
+}
+
+</script>
+
+</body>
+</html>
